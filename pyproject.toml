@@ -20,6 +20,9 @@ dependencies = [
     "ome-types",
     "xarray",
     "dask[array]",
+    "nd2",
+    "matplotlib",
+    "scipy"
 ]
 
 
