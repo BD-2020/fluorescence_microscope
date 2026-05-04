@@ -64,7 +64,11 @@ uv sync
 The project is designed with a **single entry point**.
 
 ```bash
-uv run python src/fluorescence_loader/plot_intensity.py --file_path /Users/tanmay/LenevoINFN/Work/BratatiImageJ/InFile/nd005.nd2
+uv run python src/fluorescence_loader/plot_intensity.py --file_path /Users/tanmay/LenevoINFN/Work/BratatiImageJ/InFile/nd005.nd2 --plot_folder /Users/tanmay/LenevoINFN/Work/BratatiImageJ/InFile/plots
+
+Choose dir_name according to your input data because the output plot directory will be crated with that name with the given path:
+- Like here output directory **path** is : {/Users/tanmay/LenevoINFN/Work/BratatiImageJ/InFile/} and **directory name** is : {plots}
+- So you can put any path according to your choice and directory name, example directory name: suppose your input data file name myinput100.nd2 the if you can choose myinput100_plot. Easy to find it and understand. 
 ```
 
 ---

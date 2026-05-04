@@ -75,7 +75,7 @@ def Auto_ROI_brightest_region(file_path):
     with nd2.ND2File(file_path) as f:
 
         data = f.to_dask()   # lazy array
-        print(data.shape)    # (94, 4656, 4656)
+        print(f"[DEBUG] Data shape: {data.shape}")    # (94, 4656, 4656)
         first_frame = data[0].compute()
 
     # Find brightest pixel
@@ -92,7 +92,7 @@ def Auto_ROI_brightest_region(file_path):
 
     auto_roi = (y1, y2, x1, x2)
 
-    print("[DEBUG : ] Auto ROI:", auto_roi)
+    print(f"[DEBUG] Auto ROI: {auto_roi}")
 
     mean_intensity_roi = []
 
@@ -116,7 +116,7 @@ def Compute_intensity_timeframe(file_path, n_plots):
         data = f.to_dask()   # lazy loading
         T = f.sizes['T']
 
-    print(f"[DEBUG : ] Total frames: {T}")
+    print(f"[DEBUG] Total frames: {T}")
     indices = np.linspace(0, T - 1, n_plots, dtype=int)
 
     # -----------------------------
@@ -132,6 +132,6 @@ def Compute_intensity_timeframe(file_path, n_plots):
     #vmin = min(frame.min() for frame in sample_frames)
     #vmax = max(frame.max() for frame in sample_frames)
 
-    print(f"[DEBUG : ] vmin : {vmin} : vmax : {vmax}")
+    print(f"[DEBUG] vmin : {vmin} : vmax : {vmax}")
 
     return vmin, vmax, data, indices 
