@@ -107,7 +107,7 @@ def Auto_ROI_brightest_region(file_path):
 
     return mean_intensity_roi
 
-def Compute_intensity_timeframe(file_path, n_plots):
+def Compute_intensity_timeframe(file_path, n_plots, frame_indices=None):
 
     # -----------------------------
     # INPUT
@@ -117,7 +117,17 @@ def Compute_intensity_timeframe(file_path, n_plots):
         T = f.sizes['T']
 
     print(f"[DEBUG] Total frames: {T}")
-    indices = np.linspace(0, T - 1, n_plots, dtype=int)
+    #indices = np.linspace(0, T - 1, n_plots, dtype=int)
+
+    if frame_indices is not None:
+        indices = np.array(frame_indices)
+    else:
+        indices = np.linspace(
+            0,
+            T - 1,
+            n_plots,
+            dtype=int
+        )
 
     # -----------------------------
     # COMPUTE GLOBAL INTENSITY RANGE

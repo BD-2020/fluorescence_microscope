@@ -26,6 +26,14 @@ parser.add_argument(
     help="Number of frames to plot"
 )
 
+parser.add_argument(
+    "--frame_indices",
+    type=int,
+    nargs="+",
+    default=None,
+    help="Specific frame indices to plot"
+)
+
 def plot_intensity(mean_intensity, plot_diretory):
     plt.plot(mean_intensity, marker='o')
     plt.xlabel("Time frame")
@@ -104,8 +112,10 @@ def plot_xy_intensity(vmin, vmax, data, indices, n_plots = 10, plot_diretory=Non
     #indices = np.linspace(0, T - 1, n_plots, dtype=int)
     print(f"Selected frames: {indices}")
 
-
-    fig, axes = plt.subplots(2, 5, figsize=(15, 6))
+    #if args.frame_indices:
+    fig, axes = plt.subplots(1, 3, figsize=(15, 6))
+    #else:
+        #fig, axes = plt.subplots(2, 5, figsize=(15, 6))
 
     axes = axes.ravel()
 
@@ -118,7 +128,7 @@ def plot_xy_intensity(vmin, vmax, data, indices, n_plots = 10, plot_diretory=Non
         im = ax.imshow(frame, cmap='afmhot', vmin=vmin, vmax=vmax)
         ax.set_title(f"T={idx}")
         ax.axis('off')
-
+        #print(f"frame {frame} idx {idx}")
     plt.subplots_adjust(wspace=0.1, hspace=0.3)
     #plt.show()
 
@@ -173,9 +183,8 @@ def main():
 
     plot_auto_roi(time, intensity_roi_mean, plot_diretory) #open it
 
-    n_plots = 10
-
-    vmin, vmax, data_intensity, indices  = Compute_intensity_timeframe(infile, 10)
+    
+    vmin, vmax, data_intensity, indices  = Compute_intensity_timeframe(infile, args.n_plots, args.frame_indices)
     plot_xy_intensity(vmin, vmax, data_intensity, indices, 10, plot_diretory)
 
     
