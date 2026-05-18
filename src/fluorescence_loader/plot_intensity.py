@@ -126,9 +126,6 @@ def plot_xy_intensity(vmin, vmax, data, indices, n_plots = 10, ncols = 1, plot_d
     #indices = np.linspace(0, T - 1, n_plots, dtype=int)
     print(f"Selected frames: {indices}")
 
-    #if args.frame_indices:
-    #fig, axes = plt.subplots(1, 3, figsize=(15, 6))
-    #else:
     fig, axes = plt.subplots(nrows, ncols, figsize=(15, 6)) #Need to fix it
 
     axes = axes.ravel()
